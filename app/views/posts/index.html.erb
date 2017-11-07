@@ -1,0 +1,15 @@
+<h2>投稿一覧</h2>
+<div class="post_content">
+  <% @posts.reverse_order.each do |post|%>
+    <p><%= "依頼者: #{post.user.name} さん" %></p>
+    <p>タイトル: <%= link_to "#{post.title}", post_path(post.id) %></p>
+    <p>希望日: <%= simple_time post.requested_date %></p>
+    <p>投稿日: <%= simple_time post.created_at %></p>
+    <% if post.user == current_user %>
+      <p>
+        <%= link_to '編集', edit_post_path(post.id), class: 'edit-btn'  %> |
+        <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'delete-btn'  %>
+      </p>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,31 @@
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :名前 %>
+  <%= f.text_field :name %>
+  <%= f.label :年齢 %>
+  <%= f.text_field :age %>
+  <%= f.select :gender, [["男性", "0"], ["女性", "1"], ["その他", "2"]] %>
+  <label><%= f.radio_button :sort, "1" %>一般ユーザーの方</label>
+  <label><%= f.radio_button :sort, "2" %>通訳の方</label>
+  <%= f.label :メール %>
+  <%= f.email_field :email %>
+  <%= f.label :パスワード %>
+  <%= f.password_field :password %>
+  <%= f.label :パスワード確認 %>
+  <%= f.password_field :password_comfirmaiton %>
+  <%= f.label :画像 %>
+  <%= f.file_field :image, id: :user_image %>
+  <%= f.label :通訳をご選択の方は簡単に経験をご記入下さい %>
+  <%= f.text_field :experience %>
+  <%= f.submit "登録" %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

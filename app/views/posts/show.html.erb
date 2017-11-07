@@ -1,0 +1,15 @@
+<h1>詳細</h1>
+  <p>内容: <%= @post.content %></p>
+  <p><%= "依頼者:　#{@post.user.name} さん" %></p>
+  <p>タイトル:　<%= link_to "#{@post.title}", post_path(@post.id) %></p>
+  <p>希望日:　<%= simple_time @post.requested_date %></p>
+  <p>投稿日:　<%= simple_time @post.created_at %></p>
+  <% if @post.user == current_user %>
+    <p>
+      <%= link_to '編集', edit_post_path(post.id), class: 'edit-btn'  %> |
+      <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'delete-btn'  %>
+    </p>
+  <% end %>
+  <div class="item">
+    <%= link_to 'メッセージ', conversations_path(sender_id: @interpreter.id, recipient_id: current_user.id), method: :post %>
+  </div>

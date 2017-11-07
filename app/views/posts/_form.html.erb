@@ -1,0 +1,46 @@
+<%= form_with(model: @post, local: true) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @post.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-area">
+    <div>
+      <%= f.label :タイトル%>
+    </div>
+    <div>
+      <%= f.text_area :title %>
+    </div>
+    <div>
+      <%= f.label :希望日 %>
+    </div>
+    <div>
+      <%= raw sprintf(
+                f.datetime_select(
+                  :requested_date,
+                  discard_minute: true,
+                  discard_hour: true,
+                  use_month_numbers: true,
+                  date_separator: '%s'),
+                  '年', '月') + '日' %>
+    </div>
+    <div>
+      <%= f.label :依頼内容 %>
+    </div>
+    <div>
+      <%= f.text_area :content %>
+    </div>
+    <div class="submit-button">
+      <%= f.submit :保存, data: { confirm: '投稿していいですか?'} %>
+    <div>
+  </div>
+    <%= link_to "戻る", posts_path %>
+  </div>
+<% end %>

@@ -1,0 +1,68 @@
+body {
+  background-color: #fff;
+}
+
+.container {
+  width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Roboto Slab" , Garamond , "Times New Roman" , "游明朝";
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+header {
+  padding: 0px;
+  margin: 0;
+  background-color: #fff;
+  border-bottom: 2px solid #efefef;
+  height: 50px;
+}
+
+.top-menu li {
+  list-style: none;
+  float: right;
+}
+
+.clearfix:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.wrapper {
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+aside {
+  margin-top: 55px;
+  height: 300px;
+  width: 20%;
+  float: left;
+  border: 3px solid #808080;
+  border-radius: 20px;
+}
+
+aside ul {
+  padding-top: 20px;
+}
+
+aside li {
+  height: 30px;
+  list-style: none;
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+
+.content {
+  width: 70%;
+  float: left;
+  margin-left: 50px;
+}
+
+footer {
+
+}

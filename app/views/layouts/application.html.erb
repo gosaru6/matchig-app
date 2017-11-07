@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MatchingApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="clearfix">
+        <ul class="top-menu">
+          <% if logged_in? %>
+          <p><%= "#{current_user.name} "%></p>
+            <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+          <% else %>
+            <li><%= link_to "ログイン",new_session_path %></li>
+            <li><%= link_to "新規登録　　", new_user_path %></li>
+          <% end %>
+        </ul>
+      </header>
+      <div class="wrapper clearfix">
+        <aside class="side_bar">
+          <ul>
+          <% if logged_in? %>
+            <li><%= link_to "マイページ", user_path(current_user.id), class: "btn btn-default" %></li>
+          <% end %>
+            <li><%= link_to "新規投稿", new_post_path, class: "btn btn-default" %></li>
+            <li><%= link_to "投稿一覧", posts_path, class: "btn btn-default" %></li>
+            <li><%= link_to "通訳一覧", interpreter_path, class: "btn btn-default"%></li>
+            <li><%= link_to "メッセージ", conversations_path, class: "btn btn-default" %></li>            
+          </ul>
+        </aside>
+        <div class="content">
+          <%= yield %>
+        </div>
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>

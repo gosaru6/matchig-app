@@ -1,0 +1,11 @@
+<h1>通訳一覧(interpreter.html.erb)</h1>
+<% @interpreters.order(name: :asc).each do |interpreter| %>
+  <div class="interpreter-area">
+    <%= link_to interpreter.name, user_path(interpreter.id) %>
+    <% if interpreter.id != current_user.id %>
+        <div class="item">
+          <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: interpreter.id), method: :post %>
+        </div>
+    <% end %>
+  </div>
+<% end %>
