@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def posted_index
+    @user_posted = Post.where(user_id: params[:id]).page(params[:page]).per(5)
+  end
+
 end

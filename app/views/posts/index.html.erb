@@ -1,15 +1,21 @@
-<h2>投稿一覧</h2>
-<div class="post_content">
+<h3>投稿一覧</h3>
+<div class="post_area">
+  <%= page_entries_info @posts %>
   <% @posts.reverse_order.each do |post|%>
-    <p><%= "依頼者: #{post.user.name} さん" %></p>
-    <p>タイトル: <%= link_to "#{post.title}", post_path(post.id) %></p>
-    <p>希望日: <%= simple_time post.requested_date %></p>
-    <p>投稿日: <%= simple_time post.created_at %></p>
-    <% if post.user == current_user %>
-      <p>
-        <%= link_to '編集', edit_post_path(post.id), class: 'edit-btn'  %> |
-        <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'delete-btn'  %>
-      </p>
-    <% end %>
+    <div class="post_content">
+      <ul>
+        <li>投稿日: <%= simple_time post.created_at %>
+          <%= link_to "投稿者: #{post.user.name} さん", user_path(post.user_id) %></li><br>
+        <li>タイトル: <%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></li><br>
+        <li>希望日: <%= simple_time post.requested_date %></li><br>
+        <% if post.user == current_user %>
+          <li>
+            <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>  |
+            <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
   <% end %>
+  <%= paginate @posts %>
 </div>

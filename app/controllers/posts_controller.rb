@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(10)
   end
 
   def new
@@ -25,9 +25,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    if current_user.sort == 2
-      @interpreter = current_user
-    end
+    
   end
 
   def update
@@ -45,7 +43,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :content, :requested_date)
+    params.require(:post).permit(:title, :content, :requested_date, :user_id)
   end
 
   def set_post

@@ -1,5 +1,10 @@
 <h3>プロフィール</h3>
-<div class="user_profile">
+<% if logged_in? && current_user.id != @user.id  %>
+  <h4 class="send_message">
+    <%= link_to "メッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
+  </h4>
+<% end %>
+<div class="user_show_area">
   <%= form_with(model: @user, local: true) do |form| %>
   <div class="user_box1 clearfix">
     <div class="user_image">
@@ -22,24 +27,47 @@
             <%= "女性" %>
           <% else %>
             <%= "その他" %>
-          <% end %>
-        </li>
-        <li>年齢:
-          <%= @user.age %></li>
-        <% if current_user.id == @user.id %>
-          <li><%= link_to "メッセージ一覧", conversations_path %></li>
         <% end %>
-      </ul>
-      <div class="experience_area">
-        <% if @user.experience.present? %>
-          <p style="font-size: 20px">手話経験</p>
-          <%= @user.experience %>
-        <% end %>
-      </div>
+      </li>
+      <li>年齢: <%= @user.age %></li>
+      <% if current_user.id == @user.id %>
+        <li><%= link_to "メッセージ一覧", conversations_path %></li>
+      <% end %>
+    </ul>
+    <div class="experience_area">
+      <% if @user.experience.present? %>
+      <p style="font-size: 20px">手話経験</p>
+        <%= @user.experience %>
+      <% end %>
     </div>
   </div>
+</div>
   <div class="btn_area">
-    <p><%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default' %></p>
-    <p><%= link_to "退会", user_path, method: :delete, data: { confirm: '退会処理を行っていいですか?'}, class: 'btn btn-danger' %></p>
+    <% if current_user.id == @user.id %>
+      <p><%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default' %></p>
+      <p><%= link_to "退会", user_path, method: :delete, data: { confirm: '退会処理を行っていいですか?'}, class: 'btn btn-danger' %></p>
+    <% end %>
   </div>
 <% end %>
+
+<%= page_entries_info @user_posted %>
+<% @user_posted.each do |post| %>
+  <div class="post_content">
+    <ul>
+      <li>投稿日:
+        <%= simple_time post.created_at %></li><br>
+      <li>タイトル:
+        <%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></li><br>
+      <li>希望日:
+        <%= simple_time post.requested_date %></li><br>
+      <% if post.user == current_user %>
+        <li>
+          <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
+          |
+          <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= paginate @user_posted %>

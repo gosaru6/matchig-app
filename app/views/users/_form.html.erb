@@ -15,7 +15,7 @@
   <%= f.label :画像 %>
   <%= f.file_field :image, id: :user_image %>
   <%= f.label :通訳をご選択の方は簡単に経験をご記入下さい %>
-  <%= f.text_field :experience %>
+  <%= f.text_area :experience %>
   <%= f.submit "登録" %>
 
   <% if @user.errors.any? %>

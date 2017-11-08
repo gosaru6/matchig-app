@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    posted_index
     @user = User.find(params[:id])
   end
 

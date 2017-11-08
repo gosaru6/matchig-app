@@ -1,11 +1,12 @@
 <h1>ログイン</h1>
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
 <%= form_with(scope: :session, url: sessions_path) do |f| %>
-
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.submit "ログイン" %>
+  <p><%= f.label :email %></p>
+  <p><%= f.email_field :email %></p>
+  <p><%= f.label :password %></p>
+  <p><%= f.password_field :password %></p>
+  <p><%= f.submit "ログイン" %></p>
+</div>
 <% end %>

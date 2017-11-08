@@ -1,9 +1,7 @@
-<div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
-  <table class="table table-hover">
-    <head>
-      <h2>メッセージ一覧(conversation index.html.erb)</h2>
-    </head>
-    <body>
+<div>
+  <table class="table">
+    <h3>メッセージ一覧(conversation index.html.erb)</h3>
+    <div>
       <% @conversations.each do |conversation| %>
         <td>
           <% if conversation.target_user(current_user).present? %>
@@ -11,6 +9,6 @@
           <% end %>
         </td>
       <% end %>
-    </body>
+    </div>
   </table>
 </div>

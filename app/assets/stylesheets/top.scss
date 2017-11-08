@@ -1,5 +1,6 @@
 body {
-  background-color: #fff;
+  background-color: #f2f2f2;
+  height: 100%;
 }
 
 .container {
@@ -37,11 +38,13 @@ header {
 
 aside {
   margin-top: 55px;
+  margin-left: 40px;
   height: 300px;
   width: 20%;
   float: left;
   border: 3px solid #808080;
   border-radius: 20px;
+
 }
 
 aside ul {
@@ -61,8 +64,4 @@ aside li {
   width: 70%;
   float: left;
   margin-left: 50px;
-}
-
-footer {
-
 }
