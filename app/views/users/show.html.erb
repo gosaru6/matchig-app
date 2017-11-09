@@ -53,21 +53,19 @@
 <%= page_entries_info @user_posted %>
 <% @user_posted.each do |post| %>
   <div class="post_content">
-    <ul>
-      <li>投稿日:
-        <%= simple_time post.created_at %></li><br>
-      <li>タイトル:
-        <%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></li><br>
-      <li>希望日:
-        <%= simple_time post.requested_date %></li><br>
-      <% if post.user == current_user %>
-        <li>
-          <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
-          |
-          <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
-        </li>
-      <% end %>
-    </ul>
+    <p>投稿日:
+      <%= simple_time post.created_at %></p><br>
+    <p>タイトル:
+      <%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></p><br>
+    <lp>希望日:
+      <%= simple_time post.requested_date %></li>
+    <% if post.user == current_user %>
+      <p>
+        <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
+        |
+        <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
+      </p>
+    <% end %>
   </div>
 <% end %>
 <%= paginate @user_posted %>

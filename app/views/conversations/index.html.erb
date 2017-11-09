@@ -1,14 +1,10 @@
-<div>
-  <table class="table">
-    <h3>メッセージ一覧(conversation index.html.erb)</h3>
-    <div>
-      <% @conversations.each do |conversation| %>
-        <td>
-          <% if conversation.target_user(current_user).present? %>
-            <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation)%>
-          <% end %>
-        </td>
+<h3>メッセージ一覧</h3>
+<table class="table" style="display: inline;">
+  <% @conversations.each do |conversation| %>
+    <td>
+      <% if conversation.target_user(current_user).present? %>
+        <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation)%>
       <% end %>
-    </div>
-  </table>
-</div>
+    </td>
+  <% end %>
+</table>

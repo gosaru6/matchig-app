@@ -10,7 +10,7 @@
 
   <body>
     <div class="container">
-      <header class="clearfix">
+      <header>
         <ul class="top-menu">
           <% if logged_in? %>
           <p><%= "#{current_user.name} "%></p>
@@ -21,18 +21,20 @@
           <% end %>
         </ul>
       </header>
-      <div class="wrapper clearfix">
-        <aside class="side_bar">
-          <ul>
-          <% if logged_in? %>
-            <li><%= link_to "マイページ", user_path(current_user.id), class: "btn btn-default" %></li>
-          <% end %>
-            <li><%= link_to "新規投稿", new_post_path, class: "btn btn-default" %></li>
-            <li><%= link_to "投稿一覧", posts_path, class: "btn btn-default" %></li>
-            <li><%= link_to "通訳一覧", interpreter_path, class: "btn btn-default"%></li>
-            <li><%= link_to "メッセージ一覧", conversations_path, class: "btn btn-default" %></li>            
-          </ul>
-        </aside>
+      <div class="wrapper">
+        <div class="sub">
+          <aside class="side_bar">
+            <ul>
+            <% if logged_in? %>
+              <li><%= link_to "マイページ", user_path(current_user.id), style:"color: #364F6B;" %></li>
+            <% end %>
+              <li><%= link_to "新規投稿", new_post_path, style:"color: #364F6B;" %></li>
+              <li><%= link_to "投稿一覧", posts_path, style:"color: #364F6B;" %></li>
+              <li><%= link_to "通訳一覧", interpreter_path, style:"color: #364F6B;" %></li>
+              <li><%= link_to "メッセージ一覧", conversations_path, style:"color: #364F6B;" %></li>
+            </ul>
+          </aside>
+        </div>
         <div class="content">
           <%= yield %>
         </div>

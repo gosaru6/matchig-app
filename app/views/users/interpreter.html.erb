@@ -1,4 +1,4 @@
-<h1>通訳一覧(interpreter.html.erb)</h1>
+<h3>通訳一覧</h3>
 <% @interpreters.order(name: :asc).each do |interpreter| %>
   <div class="interpreter_area">
     <div class="user_image">
@@ -8,6 +8,6 @@
         <div><%= image_tag 'default.png', :size => '60x60' %></div>
       <% end %>
     </div>
-    <div class="user_name"><%= link_to "ユーザー名: #{interpreter.name}", user_path(interpreter.id, style="color: #000000;") %></div>
+    <div class="user_name"><%= link_to "ユーザー名: #{interpreter.name}", user_path(interpreter.id, style:"scolor: #364F6B;") %></div>
   </div>
 <% end %>
