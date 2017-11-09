@@ -13,9 +13,4 @@ class ApplicationController < ActionController::Base
     @user_posted = Post.where(user_id: params[:id]).page(params[:page]).per(5)
   end
 
-  def user_email
-    @conversation = Conversation.find(params[:conversation_id])
-    @recipient_user = User.find_by(id: @conversation.recipient_id)
-  end
-
 end

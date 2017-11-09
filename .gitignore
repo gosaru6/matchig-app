@@ -17,6 +17,3 @@
 /yarn-error.log
 
 .byebug_history
-
-#dotenv-rails
-.env　## 追記
