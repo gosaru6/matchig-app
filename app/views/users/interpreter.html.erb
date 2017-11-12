@@ -1,13 +1,30 @@
-<h3>通訳一覧</h3>
-<% @interpreters.order(name: :asc).each do |interpreter| %>
-  <div class="interpreter_area">
-    <div class="user_image">
-      <% if interpreter.image.present? %>
-        <div><%= image_tag interpreter.image_url, :size => '60x60' %></div>
-      <% else %>
-        <div><%= image_tag 'default.png', :size => '60x60' %></div>
-      <% end %>
-    </div>
-    <div class="user_name"><%= link_to "ユーザー名: #{interpreter.name}", user_path(interpreter.id, style:"scolor: #364F6B;") %></div>
-  </div>
-<% end %>
+<h3>通訳の方一覧</h3>
+<%= page_entries_info @interpreters %>
+<div>
+  <% @interpreters.order(name: :asc).each do |interpreter| %>
+    <div class="interpreter-area clearfix">
+      <div class="image-area">
+        <% if interpreter.image.present? %>
+          <%= image_tag interpreter.image_url, :size => '70x70' %>
+        <% else %>
+          <%= image_tag 'default.png', :size => '70x70' %>
+        <% end %>
+      </div>
+      <div class="user-info">
+        <span><%= link_to "ユーザー名: #{interpreter.name}さん", user_path(interpreter.id), style:"color: #364F6B;" %></span><br>
+        <span>性別:
+          <% if interpreter.gender == 0 %>
+            <%= "男性 "%>
+            <% elsif interpreter.gender == 1%>
+              <%= "女性" %>
+            <% else %>
+              <%= "その他" %>
+            <% end %>
+          </span><br>
+          <span>手話経験</span><br>
+          <span><%= link_to "#{truncate(interpreter.experience, length: 50)}", user_path(interpreter.id) %></span>
+        </div>
+      </div>
+    <% end %>
+</div>
+  <%= paginate @interpreters %>

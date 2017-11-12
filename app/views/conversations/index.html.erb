@@ -1,10 +1,8 @@
-<h3>メッセージ一覧</h3>
-<table class="table" style="display: inline;">
-  <% @conversations.each do |conversation| %>
-    <td>
-      <% if conversation.target_user(current_user).present? %>
-        <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation)%>
-      <% end %>
-    </td>
-  <% end %>
-</table>
+<h3>メッセージ履歴</h3>
+<% @conversations.each do |conversation| %>
+  <div style="text-align: center;">
+    <% if conversation.target_user(current_user).present? %>
+      <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;"%>
+    <% end %>
+  </div>
+<% end %>

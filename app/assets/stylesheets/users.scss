@@ -1,76 +1,22 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-.interpreter_area {
-  height: 100px;
-  font-size: 5px;
-  border-bottom: 1px solid #808080;
-  margin-bottom: 20px;
-}
-
-.interpreter_area p {
-  display: inline;
-}
-
-.user_show_area {
-  height: 350px;
-  width: 400px;
-  border: 3px solid #808080;
-  border-radius: 20px;
-  margin-left: 120px;
-}
-
-.user_box1 {
-  height: 100px;
-  border-bottom: 3px solid #808080;
-}
-
-.user_image {
-  float: left;
-  width: 30%;
-  padding: 10px 20px;
-}
-
-.user_name {
-  color: #364F6B;
-  float: left;
-  font-size: 25px;
-  width: 70%;
-  padding: 30px 10px;
-}
-
-.user_box2 {
-  height: 250px;
-  padding-top: 20px;
-}
-
-.user_box2 ul {
-  list-style: none;
-  font-size: 20px;
-  padding-left: 20px;
-}
-
-.experience_area {
-  padding-left: 20px;
-  max-width: 370px;
-  height: 70px;
-  font-size: 15px;
-}
-
-.btn_area {
-  padding-left: 120px;
-  padding-top: 20px;
-  margin-bottom: 30px;
-}
-
-.btn_area p {
-  display: inline;
-  margin-left: 10px;
-}
-
-.post_content li {
-  font-size: 17px;
+.clearfix:after{
+  content: "";
   display: block;
+  clear: both;
+}
+
+.interpreter-area {
+  padding-top: 20px;
+  width: 100%;
+  border-bottom: 1px solid #808080;
+}
+
+.experience-area {
+  width: 50%;
+}
+
+.btn-area {
+  padding-top: 30px;
 }

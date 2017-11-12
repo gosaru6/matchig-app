@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -39,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def interpreter
-    @interpreters = User.where(sort: 2)
+    @interpreters = User.where(sort: 2).page(params[:page]).per(10)
   end
 
   private

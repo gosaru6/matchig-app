@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_find
+    @user = User.find(current_user.id)
+  end
+
+  def authenticat_user
+
+  end
+
   def posted_index
     @user_posted = Post.where(user_id: params[:id]).page(params[:page]).per(5)
   end

@@ -1,25 +1,49 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.page_entries_info {
+
+.page-entries-info {
   border-bottom: 2px solid #808080;
   padding-bottom: 20px;
 }
 
-.post_content {
-  border-bottom: 1px solid #808080;
-  margin-bottom: 30px;
+.clearfix:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.self-area {
+  width: 30%;
+  float: left;
+  height: 450px;
+  padding: 10px 10px;
+}
+
+.user-box1 {
   height: 100px;
-  text-align: center;
 }
 
-.post_content p {
-  display: inline;
+.image-area {
+  float: left;
 }
 
-.post_content li {
-  font-size: 17px;
+.user-info {
+  float: left;
+  padding-left: 10px;
 }
+
+.content-area {
+  width: 65%;
+  float: left;
+  margin-left: 5%;
+}
+
+.post-content {
+  border-bottom: 1px solid #808080;
+  padding-top: 5px;
+}
+
 
 .post_show_area {
   height: 100%;
@@ -29,9 +53,4 @@
   font-size: 20px;
   padding: 20px 20px;
   margin-bottom: 30px;
-}
-
-.post_btn_area {
-  padding-left: 170px;
-  padding-top: 20px;
 }

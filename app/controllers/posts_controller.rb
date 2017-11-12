@@ -8,6 +8,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).per(10)
+    @post = Post.new
+    user_find
   end
 
   def new
@@ -25,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def update

@@ -1,6 +1,8 @@
 <h3>詳細</h3>
 <h4>
-  <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @post.user_id), method: :post %>
+  <% if current_user.id != @post.user_id %>
+    <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @post.user_id), method: :post %>
+  <% end %>
 </h4>
   <div class="post_show_area">
     <p><%= link_to "投稿者:　#{@post.user.name} さん", user_path(@post.user_id) %></p>

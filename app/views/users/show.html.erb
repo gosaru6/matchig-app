@@ -4,68 +4,65 @@
     <%= link_to "メッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
   </h4>
 <% end %>
-<div class="user_show_area">
-  <%= form_with(model: @user, local: true) do |form| %>
-  <div class="user_box1 clearfix">
-    <div class="user_image">
+<div class="self-area">
+  <div class="user-box1 clearfix">
+    <div class="image-area">
       <% if @user.image.present? %>
-        <div><%= image_tag @user.image_url, :size => '80x80' %></div>
+        <%= image_tag @user.image_url, :size => '70x70' %>
       <% else %>
-        <div><%= image_tag 'default.png', :size => '80x80' %></div>
+        <%= image_tag 'default.png', :size => '70x70' %>
       <% end %>
     </div>
-    <div class="user_name">
-      <%= "名前： #{@user.name}"%>
-    </div>
-  </div>
-  <div class="user_box2">
-    <ul>
-      <li class="user_p">性別:
+    <div class="user-info">
+      <span>名前:<%= @user.name %></span><br>
+      <span>年齢:<%= @user.age %></span><br>
+      <span>性別:
         <% if @user.gender == 0 %>
           <%= "男性 "%>
           <% elsif @user.gender == 1%>
             <%= "女性" %>
           <% else %>
             <%= "その他" %>
-        <% end %>
-      </li>
-      <li>年齢: <%= @user.age %></li>
+          <% end %>
+      </span><br>
       <% if current_user.id == @user.id %>
-        <li><%= link_to "メッセージ一覧", conversations_path %></li>
-      <% end %>
-    </ul>
-    <div class="experience_area">
-      <% if @user.experience.present? %>
-      <p style="font-size: 20px">手話経験</p>
-        <%= @user.experience %>
+        <span><%= link_to "メッセージ一覧へ", conversations_path %></span>
       <% end %>
     </div>
   </div>
-</div>
-  <div class="btn_area">
-    <% if current_user.id == @user.id %>
-      <p><%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default' %></p>
-      <p><%= link_to "退会", user_path, method: :delete, data: { confirm: '退会処理を行っていいですか?'}, class: 'btn btn-danger' %></p>
+  <div class="experience_area">
+    <% if @user.experience.present? %>
+      <p style="font-size: 20px">手話経験</p>
+      <%= @user.experience %>
     <% end %>
   </div>
-<% end %>
-
-<%= page_entries_info @user_posted %>
-<% @user_posted.each do |post| %>
-  <div class="post_content">
-    <p>投稿日:
-      <%= simple_time post.created_at %></p><br>
-    <p>タイトル:
-      <%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></p><br>
-    <lp>希望日:
-      <%= simple_time post.requested_date %></li>
-    <% if post.user == current_user %>
+  <div class="btn-area">
+    <% if current_user.id == @user.id %>
       <p>
-        <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
-        |
-        <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
+        <%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default' %>
+        <%= link_to "退会", user_path, method: :delete, data: { confirm: '退会処理を行っていいですか?'}, class: 'btn btn-danger' %>
       </p>
     <% end %>
   </div>
-<% end %>
+</div>
+
+<div class="content-area">
+  <h3>投稿履歴</h3>
+  <p class="page-entries-info clearfix"><%= page_entries_info @user_posted %></p>
+  <% @user_posted.each do |post| %>
+    <div class="post-content">
+      <span>タイトル:<%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></span><br>
+      <span>内容:<%= post.content %></span><br>
+      <strong>希望日:<%= simple_time post.requested_date %></strong>
+      <p>投稿日:<%= simple_time post.created_at %></p>
+      <% if post.user == current_user %>
+        <p>
+          <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
+          |
+          <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 <%= paginate @user_posted %>
