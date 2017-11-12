@@ -3,4 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .message_area {
   padding-top: 30px;
+  height: 100%;
+  width: 500px;
+  margin: auto;
+}
+
+.message-right {
+  float: right;
+  width: 50%;
+}
+
+.message-left {
+  float: left;
+  width: 50%;
+}
+
+.field {
+  margin-top: 50px;
 }

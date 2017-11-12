@@ -1,7 +1,13 @@
 <h3>メッセージ履歴</h3>
 <% @conversations.each do |conversation| %>
-  <div style="text-align: center;">
+  <div class="conversation-area">
     <% if conversation.target_user(current_user).present? %>
+      <% if conversation.target_user(current_user).image.present? %>
+        <%= image_tag post.user.image_url, :size => '70x70' %>
+      <% else %>
+        <%= image_tag 'default.png', :size => '70x70' %>
+      <% end %>
+
       <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;"%>
     <% end %>
   </div>

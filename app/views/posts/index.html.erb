@@ -67,7 +67,7 @@
   <p class="page-entries-info clearfix"><%= page_entries_info @posts %></p>
 
   <% @posts.reverse_order.each do |post|%>
-    <div class="post-content">
+    <div class="post-content clearfix">
       <div class="image-area">
         <% if post.user.image.present? %>
           <%= image_tag post.user.image_url, :size => '70x70' %>
@@ -75,18 +75,19 @@
           <%= image_tag 'default.png', :size => '70x70' %>
         <% end %>
       </div>
-      <span><%= link_to "投稿者: #{post.user.name} さん", user_path(post.user_id) %></span><br>
-      <span>タイトル:<%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></span><br>
-      <strong>希望日:<%= simple_time post.requested_date %></strong>
-      <p>投稿日:<%= simple_time post.created_at %></p>
-      <% if post.user == current_user %>
-        <p>
-          <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
-          |
-          <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
-        </p>
-
-      <% end %>
+      <div class="post-info">
+        <span><%= link_to "投稿者: #{post.user.name} さん", user_path(post.user_id) %></span><br>
+        <span>タイトル:<%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></span><br>
+        <strong>希望日:<%= simple_time post.requested_date %></strong>
+        <p>投稿日:<%= simple_time post.created_at %></p>
+        <% if post.user == current_user %>
+          <p>
+            <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
+            |
+            <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
+          </p>
+        <% end %>
+      </div>
     </div>
   <% end %>
   <%= paginate @posts %>
