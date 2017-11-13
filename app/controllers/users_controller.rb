@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
-
-  def index
-    @users = User.all
-  end
+  before_action :forbid_login_user, {only: [:new, :create]}
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
   def new
     @user = User.new
@@ -12,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user.id)
+      redirect_to posts_path
     else
       render 'new'
     end
@@ -39,11 +37,18 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to posts_path, notice: "退会処理を行いました"
+    redirect_to root_path, notice: "退会処理を行いました"
   end
 
   def interpreter
-    @interpreters = User.where(sort: 2).page(params[:page]).per(10)
+    @interpreters =
+    if params[:search]
+      #searchされた場合は、原文+.where('name LIKE ?', "%#{params[:search]}%")を実行
+      User.where(sort: 2).page(params[:page]).where('name LIKE ?', "%#{params[:search]}%").per(10)
+    else
+      #searchされていない場合は、原文そのまま
+      User.where(sort: 2).page(params[:page]).per(10)
+    end
   end
 
   private

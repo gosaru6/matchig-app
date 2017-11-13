@@ -1,13 +1,13 @@
-<h3>ログイン</h3>
-<div style="text-align: center;">
+<h3 style="text-align: center;">ログイン</h3>
+<div class="login-area">
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value, class: "#{key}") %>
   <% end %>
   <%= form_with(scope: :session, url: sessions_path) do |f| %>
     <p><%= f.label :メールアドレス %></p>
-    <p><%= f.email_field :email %></p>
+    <p><%= f.email_field :email, size: '60x5' %></p>
     <p><%= f.label :パスワード %></p>
-    <p><%= f.password_field :password %></p>
-    <p><%= f.submit "ログイン" %></p>
+    <p><%= f.password_field :password, size: '60x5' %></p>
+    <p><%= f.submit "ログイン", class:"btn btn-primary" %></p>
   <% end %>
 </div>

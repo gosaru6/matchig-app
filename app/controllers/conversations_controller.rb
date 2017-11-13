@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
   def index
     #全てのユーザーと会話一覧を取得
     @users = User.all
-    @conversations = Conversation.all
+    @conversations = Conversation.where(recipient_id: current_user.id).or(Conversation.where(sender_id: current_user.id))
   end
 
   def create

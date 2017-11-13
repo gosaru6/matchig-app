@@ -3,7 +3,7 @@
   <div class="conversation-area">
     <% if conversation.target_user(current_user).present? %>
       <% if conversation.target_user(current_user).image.present? %>
-        <%= image_tag post.user.image_url, :size => '70x70' %>
+        <%= image_tag conversation.target_user(current_user).image_url, :size => '70x70' %>
       <% else %>
         <%= image_tag 'default.png', :size => '70x70' %>
       <% end %>

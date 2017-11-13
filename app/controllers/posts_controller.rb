@@ -3,13 +3,13 @@ class PostsController < ApplicationController
   before_action :current_user_check, only: [:new, :edit, :show, :destroy]
 
   def top
-    redirect_to posts_path
+
   end
 
   def index
     @posts = Post.page(params[:page]).per(10)
     @post = Post.new
-    user_find
+    user_find if current_user
   end
 
   def new

@@ -6,11 +6,12 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-height">
   </head>
   <body>
     <div class="container">
       <header class="header clearfix">
-        <h2>sample</h2>
+        <h2><%= link_to "sample", posts_path, style:"color: #fff;" %></h2>
         <nav>
           <ul class="top-menu">
             <li><a style="color: #fff;">ヘルプ</a></li>
@@ -19,7 +20,7 @@
               <ul class="items dropdown-menu">
                 <% if logged_in? %>
                   <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
-                  <li><%= link_to "編集", edit_user_path(current_user.id) %></li>
+                  <li><%= link_to "アカウント編集", edit_user_path(current_user.id) %></li>
                   <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
                 <% else %>
                   <li><%= link_to "ログイン",new_session_path %></li>
@@ -27,8 +28,8 @@
                 <% end %>
               </ul>
             </li>
-            <li><%= link_to "ユーザー", users_path, style:"color: #fff;" %></li>
-            <li><%= link_to "ホーム", posts_path, style:"color: #fff;" %></li>
+            <li><%= link_to "通訳者一覧", interpreter_path, style:"color: #fff;" %></li>
+            <li><%= link_to "トップ", posts_path, style:"color: #fff;" %></li>
           </ul>
         </nav>
       </header>

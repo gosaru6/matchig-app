@@ -1,95 +1,108 @@
-<div class="main-page clearfix">
-  <div class="self-area">
-    <% if logged_in? && current_user.id != @user.id  %>
-      <h4 class="send-message">
-        <%= link_to "メッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
-      </h4>
-    <% end %>
-    <div class="user-box1 clearfix">
-      <div class="image-area">
-        <% if @user.image.present? %>
-          <%= image_tag @user.image_url, :size => '70x70' %>
-        <% else %>
-          <%= image_tag 'default.png', :size => '70x70' %>
-        <% end %>
-      </div>
-      <div class="user-info">
-        <span>名前：<%= @user.name %></span><br>
-        <a><%= link_to "プロフィール画面へ", user_path(@user.id) %></a><br>
-        <% if current_user.id == @user.id %>
-          <span><%= link_to "メッセージ一覧へ", conversations_path %></span>
-        <% end %>
-      </div>
-    </div>
-    <div class="post-area">
-      <%= form_with(model: @post, local: true) do |f| %>
-      <% if @post.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= @post.errors.count %>件のエラーがあります。</h2>
-          <ul>
+<div class="main-page clearfix container">
+  <div class="row">
+    <% if current_user %>
+    <div class="self-area col-xs-10 col-sm-3 col-md-3">
 
-            <% @post.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
+        <% if logged_in? && current_user.id != @user.id  %>
+          <h4 class="send-message">
+            <%= link_to "メッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
+          </h4>
+        <% end %>
+        <div class="user-box1 clearfix">
+          <div class="image-area">
+            <% if @user.image.present? %>
+              <%= image_tag @user.image_url, :size => '70x70' %>
+            <% else %>
+              <%= image_tag 'default.png', :size => '70x70' %>
             <% end %>
-          </ul>
+          </div>
+          <div class="user-info">
+            <strong>名前：<%= @user.name %></strong><br>
+            <a><%= link_to "プロフィール画面へ", user_path(@user.id) %></a><br>
+            <% if current_user.id == @user.id %>
+              <span><%= link_to "メッセージ一覧へ", conversations_path %></span>
+            <% end %>
+          </div>
         </div>
-      <% end %>
+        <div class="post-area">
+          <%= form_with(model: @post, local: true) do |f| %>
+          <% if @post.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= @post.errors.count %>件のエラーがあります。</h2>
+              <ul>
 
-      <div class="form-area">
-        <div>
-          <%= f.label :タイトル%>
-        </div>
-        <div>
-          <%= f.text_area :title, :size => '32x2' %>
-        </div>
-        <div>
-          <%= f.label :希望日 %>
-        </div>
-        <div>
-          <%= raw sprintf( f.datetime_select( :requested_date, discard_minute: true, discard_hour: true, use_month_numbers: true, date_separator: '%s'), '年', '月') + '日' %>
-        </div>
-        <div>
-          <%= f.label :依頼内容 %>
-        </div>
-        <div>
-          <%= f.text_area :content, :size => '32x5' %>
-        </div>
-        <div class="submit-button">
-          <%= f.submit :投稿, data: { confirm: '投稿していいですか?'}, class:"btn btn-primary", style:"width:100%;"%>
+                <% @post.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-area">
+            <div>
+              <%= f.label :タイトル%>
+            </div>
+            <div>
+              <%= f.text_area :title, :size => '32x2' %>
+            </div>
+            <div>
+              <%= f.label :希望日 %>
+            </div>
+            <div>
+              <%= raw sprintf( f.datetime_select( :requested_date, discard_minute: true, discard_hour: true, use_month_numbers: true, date_separator: '%s'), '年', '月') + '日' %>
+            </div>
+            <div>
+              <%= f.label :依頼内容 %>
+            </div>
+            <div>
+              <%= f.text_area :content, :size => '32x5' %>
+            </div>
+            <div class="submit-button">
+              <%= f.submit :投稿, data: { confirm: '投稿していいですか?'}, class:"btn btn-primary", size:"32x5;"%>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-<% end %>
 
-<div class="content-area">
-  <h3>投稿一覧</h3>
-  <p class="page-entries-info clearfix"><%= page_entries_info @posts %></p>
-
-  <% @posts.reverse_order.each do |post|%>
-    <div class="post-content clearfix">
-      <div class="image-area">
-        <% if post.user.image.present? %>
-          <%= image_tag post.user.image_url, :size => '70x70' %>
-        <% else %>
-          <%= image_tag 'default.png', :size => '70x70' %>
-        <% end %>
-      </div>
-      <div class="post-info">
-        <span><%= link_to "投稿者: #{post.user.name} さん", user_path(post.user_id) %></span><br>
-        <span>タイトル:<%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></span><br>
-        <strong>希望日:<%= simple_time post.requested_date %></strong>
-        <p>投稿日:<%= simple_time post.created_at %></p>
-        <% if post.user == current_user %>
-          <p>
-            <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
-            |
-            <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
-          </p>
-        <% end %>
-      </div>
+    <% end %>
+    <% else %>
+    <div class="empty-box col-xs-offset-2 col-xs-10 col-sm-2 col-md-2">
+      <h4><%= link_to "新規会員登録", new_user_path %></h4>
     </div>
   <% end %>
-  <%= paginate @posts %>
+
+  <div class="content-area col-xs-8 col-sm-8 col-md-8">
+    <h3>投稿一覧</h3>
+    <p class="page-entries-info clearfix"><%= page_entries_info @posts %></p>
+
+    <% @posts.reverse_order.each do |post|%>
+      <div class="post-content clearfix">
+        <div class="image-area">
+          <% if post.user.image.present? %>
+            <%= image_tag post.user.image_url, :size => '70x70' %>
+          <% else %>
+            <%= image_tag 'default.png', :size => '70x70' %>
+          <% end %>
+        </div>
+        <div class="post-info">
+          <strong>投稿者:
+            <%= link_to " #{post.user.name} さん", user_path(post.user_id) %></strong><br>
+          <strong>タイトル:
+            <%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></strong><br>
+          <strong>希望日:
+            <%= simple_time post.requested_date %></strong>
+          <p>投稿日:<%= simple_time post.created_at %></p>
+          <% if post.user == current_user %>
+            <p>
+              <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
+              |
+              <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @posts %>
   </div>
+</div>
 </div>
