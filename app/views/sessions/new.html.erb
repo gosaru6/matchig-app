@@ -1,8 +1,5 @@
 <h3 style="text-align: center;">ログイン</h3>
 <div class="login-area">
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, value, class: "#{key}") %>
-  <% end %>
   <%= form_with(scope: :session, url: sessions_path) do |f| %>
     <p><%= f.label :メールアドレス %></p>
     <p><%= f.email_field :email, size: '60x5' %></p>

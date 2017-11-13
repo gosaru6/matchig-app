@@ -10,15 +10,15 @@
           <% user = User.find(message.user_id) %>
             <% if user.id == current_user.id %>
               <div class="message-right">
-                <strong>あなた</strong><br>
-                <%= message.message_time %><br>
-                <%= message.body %>
+                <p>あなた</p>
+                <p><%= message.message_time %></p>
+                <p><%= message.body %><p>
               </div>
             <% else %>
               <div class="message-left">
-                <strong><%= "#{user.name}さん" %></strong><br>
-                <%= message.message_time %><br>
-                <%= message.body %>
+                <p><%= "#{user.name}さん" %></p>
+                <p><%= message.message_time %></p>
+                <p><%= message.body %></p>
               </div>
             <% end %>
           <% end %>

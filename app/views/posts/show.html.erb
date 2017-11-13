@@ -8,12 +8,12 @@
       <% end %>
     </div>
     <div class="post-info">
-      <strong>投稿者:　<%= link_to "#{@post.user.name} さん", user_path(@post.user_id) %></strong><br>
-      <strong>タイトル</strong>
+      <p>投稿者:　<%= link_to "#{@post.user.name} さん", user_path(@post.user_id) %></p>
+      <p>タイトル</p>
       <p><%= "#{@post.title}" %></p>
-      <strong>内容</strong>
+      <p>内容</p>
       <p><%= @post.content %></p>
-      <strong>希望日:　<%= simple_time @post.requested_date %></strong>
+      <p>希望日:　<%= simple_time @post.requested_date %></p>
       <p>投稿日:　<%= simple_time @post.created_at %></p>
     </div>
   </div>

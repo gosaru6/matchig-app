@@ -60,9 +60,9 @@ header h2 {
   float: right;
   width: auto;
   display: block;
-  padding: 30px 20px;
+  padding: 30px 30px;
 }
-/*
+
 .dropdown > a {
   display: block;
 }
@@ -74,13 +74,13 @@ header h2 {
 
 .dropdown > .items li a {
   display: block;
-}*/
+  text-align: center;
+}
 
 .dropdown-menu {
-    //position: absolute;
-    //top: 100%;
-    //left: 0;
-    z-index: 1000;
+    position: absolute;
+    top: 100%;
+    z-index: 100;
     //display: none;
     float: left;
     //min-width: 100px;
@@ -94,7 +94,7 @@ header h2 {
     border-radius: 4px;
     //-webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
     box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-    background-clip: padding-box;
+    //background-clip: padding-box;
 }
 
 .dropdown-menu li {
@@ -103,6 +103,10 @@ header h2 {
 
 .wrapper {
   margin-top: 120px;
+}
+
+.flash-area {
+  font-size: 15px;
 }
 
 

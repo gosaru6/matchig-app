@@ -17,8 +17,8 @@
         <% end %>
       </div>
       <div class="user-info">
-        <span><%= link_to "ユーザー名: #{interpreter.name}さん", user_path(interpreter.id), style:"color: #364F6B;" %></span><br>
-        <span>性別:
+        <p><%= link_to "ユーザー名: #{interpreter.name}さん", user_path(interpreter.id) %></p>
+        <p>性別:
           <% if interpreter.gender == 0 %>
             <%= "男性 "%>
             <% elsif interpreter.gender == 1%>
@@ -26,9 +26,9 @@
             <% else %>
               <%= "その他" %>
             <% end %>
-          </span><br>
-          <span>手話経験</span><br>
-          <span><%= link_to "#{truncate(interpreter.experience, length: 50)}", user_path(interpreter.id) %></span>
+          </p>
+          <p>手話経験</p>
+          <p><%= link_to "#{truncate(interpreter.experience, length: 50)}", user_path(interpreter.id), style:"color: #364F6B;" %></p>
         </div>
       </div>
     <% end %>

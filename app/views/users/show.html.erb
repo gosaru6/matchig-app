@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="self-area col-xs-10 col-sm-3 col-md-3">
+    <div class="self-area col-xs-offset-5 col-xs-10 col-xs-offset-2 col-sm-offset-0 col-sm-3 col-md-offset-0 col-md-3">
     <h3>プロフィール</h3>
     <% if logged_in? && current_user.id != @user.id  %>
       <h4 class="send_message">
@@ -16,17 +16,17 @@
           <% end %>
         </div>
         <div class="user-info">
-          <strong>名前:<%= @user.name %></strong><br>
-          <span>年齢:<%= @user.age %></span><br>
-          <span>性別:
+          <p>名前:<%= @user.name %></p>
+          <p>年齢:<%= @user.age %></p>
+          <p>性別:
             <% if @user.gender == 0 %>
               <%= "男性 "%>
-              <% elsif @user.gender == 1%>
-                <%= "女性" %>
-              <% else %>
-                <%= "その他" %>
-              <% end %>
-            </span><br>
+            <% elsif @user.gender == 1%>
+              <%= "女性" %>
+            <% else %>
+              <%= "その他" %>
+            <% end %>
+          </p>
             <% if current_user.id == @user.id %>
               <span><%= link_to "メッセージ一覧へ", conversations_path %></span>
             <% end %>
@@ -53,9 +53,9 @@
         <p class="page-entries-info clearfix"><%= page_entries_info @user_posted %></p>
         <% @user_posted.each do |post| %>
           <div class="post-content">
-            <span>タイトル:<%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></span><br>
-            <span>内容:<%= post.content %></span><br>
-            <strong>希望日:<%= simple_time post.requested_date %></strong>
+            <p>タイトル:<%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></p>
+            <p>内容:<%= post.content %></p>
+            <p>希望日:<%= simple_time post.requested_date %></p>
             <p>投稿日:<%= simple_time post.created_at %></p>
             <% if post.user == current_user %>
               <p>

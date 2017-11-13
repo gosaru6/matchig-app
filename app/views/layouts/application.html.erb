@@ -14,7 +14,7 @@
         <h2><%= link_to "sample", posts_path, style:"color: #fff;" %></h2>
         <nav>
           <ul class="top-menu">
-            <li><a style="color: #fff;">ヘルプ</a></li>
+            <li><%= link_to "通訳者一覧", interpreter_path, style:"color: #fff;" %></li>
             <li class="dropdown">
               <a style="cursor: pointer; color: #fff;">アカウント</a>
               <ul class="items dropdown-menu">
@@ -28,12 +28,14 @@
                 <% end %>
               </ul>
             </li>
-            <li><%= link_to "通訳者一覧", interpreter_path, style:"color: #fff;" %></li>
             <li><%= link_to "トップ", posts_path, style:"color: #fff;" %></li>
           </ul>
         </nav>
       </header>
       <div class="wrapper">
+        <strong class="flash-area"><% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %></strong>
           <%= yield %>
       </div>
       <footer></footer>
