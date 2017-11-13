@@ -5,7 +5,7 @@
       <% if conversation.target_user(current_user).image.present? %>
         <%= image_tag conversation.target_user(current_user).image_url, :size => '70x70' %>
       <% else %>
-        <%= image_tag 'default.png', :size => '70x70' %>
+        <%= image_tag '/default.png', :size => '70x70' %>
       <% end %>
 
       <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;"%>
