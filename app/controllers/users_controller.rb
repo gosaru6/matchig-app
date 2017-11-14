@@ -1,6 +1,18 @@
 class UsersController < ApplicationController
   before_action :forbid_login_user, {only: [:new, :create]}
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+  before_action :current_user_check, {only: [:interpreter, :index]}
+
+  def index
+    @users =
+      if params[:search]
+        #searchされた場合は、原文+.where('name LIKE ?', "%#{params[:search]}%")を実行
+        User.page(params[:page]).where('name LIKE ?', "%#{params[:search]}%").per(10)
+      else
+        #searchされていない場合は、原文そのまま
+        User.page(params[:page]).per(10)
+      end
+  end
 
   def new
     @user = User.new

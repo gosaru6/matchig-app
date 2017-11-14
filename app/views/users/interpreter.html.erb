@@ -1,10 +1,5 @@
-<h3>通訳の方一覧</h3>
-<%= form_tag(interpreter_path, method: :get, style:"padding-bottom: 20px;") do %>
-  <p>名前検索</p>
-  <%= text_field_tag :search %>
-  <%= submit_tag '検索', :name => nil %>
-<% end %>
-
+<h4><%= link_to "全てのユーザーを表示", users_path %></h4>
+<%= render 'search'%>
 <%= page_entries_info @interpreters %>
 <div>
   <% @interpreters.order(name: :asc).each do |interpreter| %>

@@ -35,7 +35,9 @@
         <div class="experience_area">
           <% if @user.experience.present? %>
             <p style="font-size: 20px">手話経験</p>
-            <%= @user.experience %>
+            <p style="word-break:break-all; word-wrap:break-word; display: inline-block; ">
+              <%= @user.experience %>
+            </p>
           <% end %>
         </div>
         <div class="btn-area">

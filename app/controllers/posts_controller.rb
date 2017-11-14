@@ -7,7 +7,14 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).per(10)
+    @posts =
+    if params[:search]
+      Post.page(params[:page]).per(10).where( 'title LIKE ?', "%#{params[:search]}")
+    else
+      #searchされていない場合は、原文そのまま
+      Post.page(params[:page]).per(10)
+    end
+
     @post = Post.new
     user_find if current_user
   end

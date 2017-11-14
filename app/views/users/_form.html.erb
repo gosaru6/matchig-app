@@ -1,3 +1,13 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(@user.errors.count, "件のエラー") %> </h3>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <div class="signup-area">
   <%= form_with(model: @user, local: true) do |f| %>
     <p><%= f.label :名前 %></p>
@@ -19,16 +29,5 @@
     <p><%= f.label :通訳をご選択の方は簡単に経験をご記入下さい %></p>
     <p><%= f.text_area :experience, size: '60x2' %></p>
     <p><%= f.submit "登録" , class:"btn btn-primary"%></p>
-
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
-        <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
   <% end %>
 </div>

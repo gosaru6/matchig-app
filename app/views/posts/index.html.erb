@@ -73,6 +73,11 @@
 
   <div class="content-area col-xs-8 col-sm-8 col-md-8">
     <h3>投稿一覧</h3>
+      <%= form_tag(posts_path, method: :get, style:"padding-bottom: 20px;") do %>
+        <p>タイトル検索</p>
+        <%= text_field_tag :search %>
+        <%= submit_tag '検索', :name => nil %>
+      <% end %>
     <p class="page-entries-info clearfix"><%= page_entries_info @posts %></p>
 
     <% @posts.reverse_order.each do |post|%>

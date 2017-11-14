@@ -1,0 +1,33 @@
+<h4><%= link_to "通訳者のみ表示", interpreter_path %></h4>
+<%= render 'search'%>
+<%= page_entries_info @users %>
+<div>
+  <% @users.order(name: :asc).each do |user| %>
+    <div class="user-area clearfix">
+      <div class="image-area">
+        <% if user.image.present? %>
+          <%= image_tag user.image_url, :size => '70x70' %>
+        <% else %>
+          <%= image_tag '/default.png', :size => '70x70' %>
+        <% end %>
+      </div>
+      <div class="user-info">
+        <p><%= link_to "ユーザー名: #{user.name}さん", user_path(user.id) %></p>
+        <p>性別:
+          <% if user.gender == 0 %>
+            <%= "男性 "%>
+            <% elsif user.gender == 1%>
+              <%= "女性" %>
+            <% else %>
+              <%= "その他" %>
+            <% end %>
+          </p>
+          <% if user.sort == 2 %>
+            <p>手話経験</p>
+            <p><%= link_to "#{truncate(user.experience, length: 50)}", user_path(user.id), style:"color: #364F6B;" %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+</div>
+  <%= paginate @users %>
