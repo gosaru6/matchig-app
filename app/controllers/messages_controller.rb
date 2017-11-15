@@ -5,19 +5,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages # 会話に紐づくメッセージを取得
-    if @messages.length > 5
-      @over_ten = true
-      @messages = @messages[-5..-1]
-    end
 
-    if params[:m]
-      @over_ten = false
-      @messages = @conversation.messages
-    end
-
-    if @messages.last
-      @messages.last.read = true if @messages.last.user_id != current_user.id
-    end
     # 新規投稿のメッセージ用の変数を作成する
     @message = @conversation.messages.build
   end
@@ -27,6 +15,8 @@ class MessagesController < ApplicationController
     user_email
     if @message.save
       ContactMailer.contact_mail(@recipient_user).deliver
+      redirect_to conversation_messages_path(@conversation)
+    else
       redirect_to conversation_messages_path(@conversation)
     end
   end

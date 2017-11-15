@@ -1,14 +1,17 @@
-<h3>メッセージ履歴</h3>
-<% @conversations.each do |conversation| %>
-  <div class="conversation-area">
-    <% if conversation.target_user(current_user).present? %>
-      <% if conversation.target_user(current_user).image.present? %>
-        <%= image_tag conversation.target_user(current_user).image_url, :size => '70x70' %>
-      <% else %>
-        <%= image_tag '/default.png', :size => '70x70' %>
-      <% end %>
-
-      <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;"%>
+<div class="container">
+  <div class="row">
+    <h3>メッセージ履歴</h3>
+    <% @conversations.each do |conversation| %>
+      <div class="conversation-area col-sm-12 col-md-12">
+        <% if conversation.target_user(current_user).present? %>
+          <% if conversation.target_user(current_user).image.present? %>
+            <%= image_tag conversation.target_user(current_user).image_url, :size => '70x70' %>
+          <% else %>
+            <%= image_tag '/default.png', :size => '70x70' %>
+          <% end %>
+          <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;"%>
+        <% end %>
+      </div>
     <% end %>
   </div>
-<% end %>
+</div>

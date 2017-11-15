@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :gender, presence: true
-  validates :age, presence: true
+  validates :age, presence: true, numericality: { only_integer: true, greater_than: 1 }
   validates :sort, presence: true
   validates :experience, length: { maximum: 110 }
 

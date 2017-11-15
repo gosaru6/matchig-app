@@ -1,35 +1,36 @@
-<div class="message-field clearfix">
-  <div class="mesasge-create-area">
-    <%= form_with(model: @conversation, model: @message, url: conversation_messages_path, local: true) do |f| %>
-    <%= f.text_area :body, :size => "40x5" %>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden" %><br>
-    <p><%= f.submit "メッセージを送る", class:"btn btn-primary" %></p>
-  <% end %>
-  <% if @over_ten %>
-    <%= link_to '以前のメッセージを表示', '?m=all' %>
-  <% end %>
-</div>
-
-<div class="message-show-area">
-  <% @messages.reverse.each do |message| %>
-    <div class="message-box clearfix">
-      <% if message.body %>
-        <% user = User.find(message.user_id) %>
-          <% if user.id == current_user.id %>
-            <div class="message-right">
-              <p>あなた</p>
-              <p><%= message.message_time %></p>
-              <p><%= message.body %>
-                <p></div>
-              <% else %>
-                <div class="message-left">
-                  <p><%= "#{user.name}さん" %></p>
-                  <p><%= message.message_time %></p>
-                  <p><%= message.body %></p>
+<div class="container">
+  <div class="row">
+    <div class="message-field center-block row">
+      <div class="message-show-area col-sm-offset-2 col-sm-8">
+        <% @messages.each do |message| %>
+          <div class="message-box clearfix">
+            <% if message.body %>
+              <% user = User.find(message.user_id) %>
+                <% if user.id == current_user.id %>
+                  <div class="message-right">
+                    <p>あなた</p>
+                    <p><%= message.message_time %></p>
+                    <p><%= message.body %>
+                      <p></div>
+                    <% else %>
+                      <div class="message-left">
+                        <p><%= "#{user.name}さん" %></p>
+                        <p><%= message.message_time %></p>
+                        <p><%= message.body %></p>
+                      </div>
+                    <% end %>
+                  <% end %>
                 </div>
               <% end %>
+            </div>
+
+            <div class="mesasge-create-area col-sm-offset-3 col-sm-6">
+              <%= form_with(model: @conversation, model: @message, url: conversation_messages_path, local: true) do |f| %>
+              <%= f.text_area :body, :size => "40x5" %>
+              <%= f.text_field :user_id, value: current_user.id, type: "hidden" %><br>
+              <p class="message-p"><%= f.submit "メッセージを送る", class:"btn btn-primary" %></p>
             <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
