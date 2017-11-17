@@ -1,17 +1,27 @@
 <div class="container">
   <div class="row">
-    <h3>メッセージ履歴</h3>
-    <% @conversations.each do |conversation| %>
-      <div class="conversation-area col-sm-12 col-md-12">
-        <% if conversation.target_user(current_user).present? %>
-          <% if conversation.target_user(current_user).image.present? %>
-            <%= image_tag conversation.target_user(current_user).image_url, :size => '70x70' %>
-          <% else %>
-            <%= image_tag '/default.png', :size => '70x70' %>
+    <div class="col-sm-offset-2 col-sm-8">
+      <h3>メッセージ履歴</h3>
+      <% @conversations.each do |conversation| %>
+        <div class="conversation-area">
+          <% if conversation.target_user(current_user).present? %>
+            <% if conversation.target_user(current_user).image.present? %>
+              <%= image_tag conversation.target_user(current_user).image_url, :size => '70x70' %>
+            <% else %>
+              <%= image_tag '/default.png', :size => '70x70' %>
+            <% end %>　　
+            <span class="message-link">
+              <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;", method: :get %>
+              <% if conversation.target_user(current_user).sort == 2 %>
+              <span>
+                　<%= image_tag '/syuwa.png', :size => '40x40' %>
+              </span>
+              <% end %>
+            </span>
           <% end %>
-          <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;"%>
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="row"></div>
   </div>
 </div>

@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="self-area col-xs-offset-5 col-xs-10 col-xs-offset-2 col-sm-offset-0 col-sm-3 col-md-offset-0 col-md-3">
     <h3>プロフィール</h3>
-    <% if logged_in? && current_user.id != @user.id  %>
-      <h4 class="send_message">
-        <%= link_to "#{@user.name}さんへメッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
-      </h4>
-    <% end %>
+    <div class="user-self-area col-xs-5 col-sm-4">
+      <% if logged_in? && current_user.id != @user.id  %>
+        <h4 class="send_message" style="color: #F76B8A;">
+          <%= link_to "#{@user.name}さんへ", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, style:"color: #F76B8A;" %><br>メッセージを送る
+        </h4>
+      <% end %>
       <div class="user-box1 clearfix">
         <div class="image-area">
           <% if @user.image.present? %>
@@ -15,9 +15,9 @@
             <%= image_tag '/default.png', :size => '70x70' %>
           <% end %>
         </div>
-        <div class="user-info">
-          <p>名前:<%= @user.name %></p>
-          <p>年齢:<%= @user.age %></p>
+        <div class="users-user-info">
+          <p>名前: <%= @user.name %></p>
+          <p>年齢: <%= @user.age %></p>
           <p>性別:
             <% if @user.gender == 0 %>
               <%= "男性 "%>
@@ -27,12 +27,19 @@
               <%= "その他" %>
             <% end %>
           </p>
+          <p>ユーザー属性:
+            <% if @user.sort == 1 %>
+              <%= "一般ユーザー" %>
+            <% else %>
+              <%= "通訳者" %>　<%= image_tag '/syuwa.png', :size => '35x35' %>
+            <% end %>
+          </p>
             <% if current_user.id == @user.id %>
-              <span><%= link_to "メッセージ一覧へ", conversations_path %></span>
+              <p><%= link_to "メッセージ一覧へ", conversations_path %></p>
             <% end %>
           </div>
         </div>
-        <div class="experience_area">
+        <div class="experience-area">
           <% if @user.experience.present? %>
             <p style="font-size: 20px">手話経験</p>
             <p style="word-break:break-all; word-wrap:break-word; display: inline-block; ">
@@ -49,8 +56,9 @@
           <% end %>
         </div>
       </div>
+      <!-- ここまでプロフィールエリア -->
 
-      <div class="content-area col-xs-8 col-sm-8 col-md-8">
+      <div class="content-area col-xs-7 col-sm-offset-1 col-sm-6">
         <h3>投稿履歴</h3>
         <p class="page-entries-info clearfix"><%= page_entries_info @user_posted %></p>
         <% @user_posted.each do |post| %>

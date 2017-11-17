@@ -9,7 +9,7 @@ body {
   color: #364F6B;
   font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
   font-size: 14px;
-  background-color: #fff;
+  background-color: #F0F0F0;
 }
 
 .container {
@@ -59,45 +59,19 @@ header h2 {
   float: right;
   width: auto;
   display: block;
-  padding: 30px 30px;
+  padding: 20px 30px;
 }
 
-.dropdown > a {
-  display: block;
+.nav li a:hover {
+  background-color: #fff;
 }
 
-.dropdown > .items {
-  display: none;
-  position: absolute;
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+  background-color: #364F6B;
 }
 
-.dropdown > .items li a {
-  display: block;
-  text-align: center;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    z-index: 100;
-    //display: none;
-    float: left;
-    //min-width: 100px;
-    //padding: 5px 0;
-    //margin: 2px 0 0;
-    list-style: none;
-    font-size: 14px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    //-webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-    //background-clip: padding-box;
-}
-
-.dropdown-menu li {
-  padding: 10px 10px;
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color: #364F6B;
 }
 
 .wrapper {
@@ -107,6 +81,7 @@ header h2 {
 .flash-area {
   font-size: 15px;
 }
+
 
 
 /*.content {

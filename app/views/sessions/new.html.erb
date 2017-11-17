@@ -1,10 +1,13 @@
+
 <h3 style="text-align: center;">ログイン</h3>
-<div class="login-area">
-  <%= form_with(scope: :session, url: sessions_path) do |f| %>
-    <p><%= f.label :メールアドレス %></p>
-    <p><%= f.email_field :email, size: '60x5' %></p>
-    <p><%= f.label :パスワード %></p>
-    <p><%= f.password_field :password, size: '60x5' %></p>
-    <p><%= f.submit "ログイン", class:"btn btn-primary" %></p>
-  <% end %>
-</div>
+  <div class="login-area">
+    <div class="form-group">
+      <%= form_with(scope: :session, url: sessions_path) do |f| %>
+        <p><%= f.label :メールアドレス %></p>
+        <p><%= f.email_field :email, size: '60x5', class:"form-control" %></p>
+        <p><%= f.label :パスワード %></p>
+        <p><%= f.password_field :password, size: '60x5', class:"form-control" %></p>
+        <p><%= f.submit "ログイン", class:"btn btn-primary" %></p>
+      <% end %>
+    </div>
+  </div>

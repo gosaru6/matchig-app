@@ -7,11 +7,6 @@
   clear: both;
 }
 
-.signup-area {
-  width: 50%;
-  margin-left: 25%;
-}
-
 .interpreter-area, .user-area {
   padding: 10px 0;
   margin-bottom: 10px;
@@ -20,10 +15,41 @@
 }
 
 .experience-area {
-  width: 50%;
+  float: left;
   word-wrap: break-all;
 }
 
 .btn-area {
   padding-top: 30px;
+}
+
+.user-self-area {
+  float: left;
+  height: 100%;
+  background-color: #fff;
+  padding: 10px 20px;
+}
+
+.users-user-info {
+  float: left;
+  padding-left: 10px;
+}
+
+.users-user-info p {
+  font-size: 15px;
+}
+
+.users-user-index {
+  float: left;
+  padding-left: 10px;
+}
+
+.users-user-index p {
+  font-size: 13px;
+}
+
+.switching-btn {
+  padding-top: 11px;
+  float: left;
+  margin-right: 30px;
 }

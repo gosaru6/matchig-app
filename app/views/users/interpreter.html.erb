@@ -1,31 +1,40 @@
-<h4><%= link_to "全てのユーザーを表示", users_path %></h4>
-<%= render 'search'%>
-<%= page_entries_info @interpreters %>
-<div>
-  <% @interpreters.order(name: :asc).each do |interpreter| %>
-    <div class="interpreter-area clearfix">
-      <div class="image-area">
-        <% if interpreter.image.present? %>
-          <%= image_tag interpreter.image_url, :size => '70x70' %>
-        <% else %>
-          <%= image_tag '/default.png', :size => '70x70' %>
-        <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 20px;">
+      <p class="switching-btn"><%= link_to "全てのユーザーを表示", users_path, class:"btn btn-info btn-lg" %></p>
+      <%= render 'search'%>
+      <%= page_entries_info @interpreters %>
+      <div>
+        <% @interpreters.order(name: :asc).each do |interpreter| %>
+          <div class="interpreter-area clearfix">
+            <div class="image-area">
+              <% if interpreter.image.present? %>
+                <%= image_tag interpreter.image_url, :size => '70x70' %>
+              <% else %>
+                <%= image_tag '/default.png', :size => '70x70' %>
+              <% end %>
+            </div>
+            <div class="users-user-index">
+              <p>
+                <%= link_to "ユーザー名: #{interpreter.name}さん", user_path(interpreter.id) %>
+                <span>　<%= image_tag '/syuwa.png', :size => '40x40' %></span>
+              </p>
+              <p>性別:
+                <% if interpreter.gender == 0 %>
+                  <%= "男性 "%>
+                  <% elsif interpreter.gender == 1%>
+                    <%= "女性" %>
+                  <% else %>
+                    <%= "その他" %>
+                  <% end %>
+                </p>
+                <p>手話経験</p>
+                <p><%= link_to "#{truncate(interpreter.experience, length: 50)}", user_path(interpreter.id) %></p>
+              </div>
+            </div>
+          <% end %>
       </div>
-      <div class="user-info">
-        <p><%= link_to "ユーザー名: #{interpreter.name}さん", user_path(interpreter.id) %></p>
-        <p>性別:
-          <% if interpreter.gender == 0 %>
-            <%= "男性 "%>
-            <% elsif interpreter.gender == 1%>
-              <%= "女性" %>
-            <% else %>
-              <%= "その他" %>
-            <% end %>
-          </p>
-          <p>手話経験</p>
-          <p><%= link_to "#{truncate(interpreter.experience, length: 50)}", user_path(interpreter.id), style:"color: #364F6B;" %></p>
-        </div>
-      </div>
-    <% end %>
+        <%= paginate @interpreters %>
+    </div>
+  </div>
 </div>
-  <%= paginate @interpreters %>

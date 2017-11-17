@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :age, presence: true, numericality: { only_integer: true, greater_than: 1 }
   validates :sort, presence: true
-  validates :experience, length: { maximum: 110 }
+  validates :experience, length: { maximum: 150 }
 
   before_save { email.downcase! }
 

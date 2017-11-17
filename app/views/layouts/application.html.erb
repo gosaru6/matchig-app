@@ -12,35 +12,37 @@
     <div class="container">
       <header class="header clearfix">
         <h2><%= link_to "sample", posts_path, style:"color: #fff;" %></h2>
-        <nav>
-          <ul class="top-menu">
-            <li><%= link_to "ユーザー検索", users_path, style:"color: #fff;" %></li>
-            <li class="dropdown">
-              <a style="cursor: pointer; color: #fff;">アカウント</a>
-              <ul class="items dropdown-menu">
-                <% if logged_in? %>
-                  <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
-                  <li><%= link_to "アカウント編集", edit_user_path(current_user.id) %></li>
-                  <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
-                <% else %>
-                  <li><%= link_to "ログイン",new_session_path %></li>
-                  <li><%= link_to "新規登録 ", new_user_path %></li>
-                <% end %>
-              </ul>
-            </li>
-            <li><%= link_to "トップ", posts_path, style:"color: #fff;" %></li>
-          </ul>
-        </nav>
-      </header>
-      <div class="wrapper">
-        <strong class="flash-area">
-          <% flash.each do |key, value| %>
-            <%= content_tag(:div, value, class: "#{key}") %>
-          <% end %>
-        </strong>
-          <%= yield %>
-      </div>
-      <footer></footer>
+        <ul class="nav navbar-nav navbar-right top-menu">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle dropdown-toggle-extend" data-toggle="dropdown" style="color: #fff;">
+              アカウント<span class="caret"></span>
+            </a>
+            <!-- 1.メニューの配置 -->
+            <ul class="dropdown-menu dropdown-menu-extend">
+              <% if logged_in? %>
+                <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
+                <li><%= link_to "アカウント編集", edit_user_path(current_user.id) %></li>
+                <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+              <% else %>
+                <li><%= link_to "ログイン",new_session_path %></li>
+                <li><%= link_to "新規登録 ", new_user_path %></li>
+              <% end %>
+            </ul>
+          <li><%= link_to "ユーザー検索", users_path, style:"color: #fff;" %></li>
+          <li><%= link_to "トップ", posts_path, style:"color: #fff;" %></li>
+        </li>
+      </ul>
+
+    </header>
+    <div class="wrapper">
+      <strong class="flash-area">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %>
+      </strong>
+      <%= yield %>
     </div>
-  </body>
+    <footer></footer>
+  </div>
+</body>
 </html>

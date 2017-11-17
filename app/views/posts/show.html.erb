@@ -1,31 +1,44 @@
-<h3>投稿詳細</h3>
-  <div class="post_show_area clearfix">
-    <div class="image-area">
-      <% if @post.user.image.present? %>
-        <%= image_tag @post.user.image_url, :size => '70x70' %>
-      <% else %>
-        <%= image_tag '/default.png', :size => '70x70' %>
-      <% end %>
-    </div>
-    <div class="post-info">
-      <p>投稿者:　<%= link_to "#{@post.user.name} さん", user_path(@post.user_id) %></p>
-      <p>タイトル</p>
-      <p><%= "#{@post.title}" %></p>
-      <p>内容</p>
-      <p><%= @post.content %></p>
-      <p>希望日:　<%= simple_time @post.requested_date %></p>
-      <p>投稿日:　<%= simple_time @post.created_at %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+      <h3>投稿詳細</h3>
+      <div class="post-show-area clearfix">
+        <div class="image-area">
+          <% if @post.user.image.present? %>
+            <%= image_tag @post.user.image_url, :size => '70x70' %>
+          <% else %>
+            <%= image_tag '/default.png', :size => '70x70' %>
+          <% end %>
+        </div>
+        <div class="post-info">
+          <p>投稿者:　
+            <%= link_to "#{@post.user.name} さん", user_path(@post.user_id) %>　
+            <% if @post.user.sort == 2 %>
+            <span>
+              <%= image_tag '/syuwa.png', :size => '40x40' %>
+            </span>
+            <% end %>
+          </p>
+          <p>タイトル</p>
+          <p><%= "#{@post.title}" %></p>
+          <p>内容</p>
+          <p><%= @post.content %></p>
+          <p>希望日:　<%= simple_time @post.requested_date %></p>
+          <p>投稿日:　<%= simple_time @post.created_at %></p>
+        </div>
+      </div>
+        <% if @post.user == current_user %>
+          <div class="post_btn_area">
+            <p><%= link_to '編集', edit_post_path(@post.id), class: 'btn btn-default'  %>
+             | <%= link_to '削除', post_path, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger'  %>
+           </p>
+          </div>
+        <% end %>
+        <h4>
+          <% if current_user.id != @post.user_id %>
+            <%= link_to "#{@post.user.name}さんへメッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @post.user_id), method: :post %>
+          <% end %>
+        </h4>
     </div>
   </div>
-  <% if @post.user == current_user %>
-    <div class="post_btn_area">
-      <p><%= link_to '編集', edit_post_path(@post.id), class: 'btn btn-default'  %>
-       | <%= link_to '削除', post_path, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger'  %>
-     </p>
-    </div>
-  <% end %>
-  <h4>
-    <% if current_user.id != @post.user_id %>
-      <%= link_to "#{@post.user.name}さんへメッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @post.user_id), method: :post %>
-    <% end %>
-  </h4>
+</div>

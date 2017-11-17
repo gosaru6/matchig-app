@@ -8,10 +8,11 @@
   margin-bottom: 20px;
 }
 
-.self-area {
+.post-self-area {
   float: left;
-  height: 450px;
-  padding: 10px 10px;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px 20px;
 }
 
 .empty-box {
@@ -34,7 +35,7 @@
   float: left;
 }
 
-.user-info {
+.posts-user-info {
   float: left;
   padding-left: 10px;
 }
@@ -45,21 +46,30 @@
 }
 
 .content-area {
+  background-color: #fff;
   float: left;
-  
 }
 
 .post-content {
   border-bottom: 1px solid #808080;
-  padding-top: 20px 0;
+  padding: 10px 0;
   margin-bottom: 20px;
 }
 
 
-.post_show_area {
+.post-show-area {
   font-size: 18px;
-  padding: 30px 0;
+  padding: 20px 0;
   margin-bottom: 20px;
   border-bottom: 1px solid #808080;
   border-top: 1px solid #808080;
+}
+
+.post-form {
+  width: 400px;
+  margin: auto;
+}
+
+.form-area p {
+  margin-bottom: 10px;
 }

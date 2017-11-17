@@ -5,7 +5,6 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages # 会話に紐づくメッセージを取得
-
     # 新規投稿のメッセージ用の変数を作成する
     @message = @conversation.messages.build
   end
