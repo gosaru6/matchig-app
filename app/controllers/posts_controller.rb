@@ -24,8 +24,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to posts_path, notice: "投稿しました"
     else
@@ -59,11 +58,5 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def current_user_check
-    current_user
-    if !logged_in?
-      redirect_to new_session_path, notice: "ログインして下さい"
-    end
-  end
 
 end

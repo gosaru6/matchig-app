@@ -14,11 +14,12 @@
               <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;", method: :get %>
               <% if conversation.target_user(current_user).sort == 2 %>
               <span>
-                　<%= image_tag '/syuwa.png', :size => '40x40' %>
+                　<%= image_tag '/mark_maru.png', :size => '40x40' %>
               </span>
               <% end %>
             </span>
           <% end %>
+          <p><%= link_to '削除', conversation, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %></p>
         </div>
       <% end %>
     </div>

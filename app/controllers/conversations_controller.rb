@@ -21,6 +21,12 @@ class ConversationsController < ApplicationController
     redirect_to conversation_messages_path(@conversation)
   end
 
+  def destroy
+    @conversation = Conversation.find(params[:id])
+    @conversation.destroy
+    redirect_to conversations_path, notice: "削除しました"
+  end
+
   private
   def conversation_params
     params.permit(:sender_id, :recipient_id)

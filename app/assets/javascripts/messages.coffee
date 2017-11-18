@@ -1,5 +1,5 @@
 $ ->
-  p = $('.message-p')
+  p = $('.landmark')
   bottom = p.offset().top + p.height()
   height = $(window).height()
   if bottom > height
