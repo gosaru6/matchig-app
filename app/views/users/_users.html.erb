@@ -1,0 +1,35 @@
+<div class="clearfix">
+  <% @users.order(name: :asc).each do |user| %>
+    <div class="user-area clearfix">
+      <div class="image-area">
+        <% if user.image.present? %>
+          <%= image_tag user.image_url, :size => '70x70' %>
+        <% else %>
+          <%= image_tag '/default.png', :size => '70x70' %>
+        <% end %>
+      </div>
+      <div class="users-user-index">
+        <p>
+          <%= link_to "#{user.name}さん", user_path(user.id) %>
+          <% if user.sort == 2 %>
+            <span>
+              <%= image_tag '/mark_maru.png', :size => '30x30' %>
+            </span>
+          <% end %>
+        </p>
+        <p>性別:
+          <% if user.gender == 0 %>
+            <%= "男性 "%>
+            <% elsif user.gender == 1 %>
+              <%= "女性" %>
+            <% else %>
+              <%= "その他" %>
+            <% end %>
+          </p>
+          <% if current_user.id != user.id %>
+            <%= render 'follow_form', user: user %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
