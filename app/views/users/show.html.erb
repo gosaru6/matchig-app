@@ -42,11 +42,21 @@
             </p>
           <% end %>
         </div>
-        <% if logged_in? && current_user.id != @user.id  %>
-          <%= link_to image_tag('/message.png'), conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, style:"color: #F76B8A;" %>
-        <% elsif current_user.id == @user.id %>
-          <%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default btn-sm' %>
-        <% end %>
+        <div class="clearfix">
+          <div style="float: left;">
+            <% if logged_in? && current_user.id != @user.id  %>
+              <%= link_to image_tag('/message.png'), conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, style:"color: #F76B8A;" %>
+            <% elsif current_user.id == @user.id %>
+              <%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default btn-sm' %>
+            <% end %>
+          </div>
+          <div class="follow-count">
+            <%= link_to "フォロー：#{@follow}人", follow_user_path(@user.id) %>
+          </div>
+          <div class="follow-count">
+            <%= link_to "フォロワー：#{@follower}人", follower_user_path(@user.id) %>
+          </div>
+        </div>
       </div>
       <!-- ここまでプロフィールエリア -->
 

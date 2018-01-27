@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
-  get 'relationships/create'
-
-  get 'relationships/destroy'
-
   root 'posts#top'
 
-  resources :users
-  get '/interpreter', to: 'users#interpreter'
+  resources :users do
+    member do
+      get 'follow'
+      get 'follower'
+    end
+
+    collection do
+      get 'interpreter'
+    end
+  end
 
   resources :posts
   resources :sessions, only: [:new, :create, :destroy]

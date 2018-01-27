@@ -8,10 +8,13 @@
 }
 
 .interpreter-area, .user-area {
-  padding: 10px 0;
-  margin-bottom: 10px;
-  width: 100%;
-  border-bottom: 1px solid #808080;
+  float: left;
+  padding: 20px 10px;
+  margin: 20px 10px;
+  width: 200px;
+  height: 150px;
+  border: 1px solid #808080;
+  background-color: #fff;
 }
 
 .experience-area {
@@ -48,4 +51,15 @@
   padding-top: 11px;
   float: left;
   margin-right: 30px;
+}
+
+.title {
+  padding-left: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #808080;
+}
+
+.follow-count {
+  float: left;
+  margin-left: 15px;
 }

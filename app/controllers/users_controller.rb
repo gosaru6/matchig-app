@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
   before_action :forbid_login_user, {only: [:new, :create]}
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
-  before_action :current_user_check, {only: [:interpreter, :index, :show]}
+  before_action :current_user_check, {only: [:interpreter, :index, :show, :follow, :follower]}
 
   def index
     @users =
       if params[:search]
         #searchされた場合は、原文+.where('name LIKE ?', "%#{params[:search]}%")を実行
-        User.page(params[:page]).where('name LIKE ?', "%#{params[:search]}%").per(10)
+        User.page(params[:page]).where('name LIKE ?', "%#{params[:search]}%").per(12)
       else
         #searchされていない場合は、原文そのまま
-        User.page(params[:page]).per(10)
+        User.page(params[:page]).per(12)
       end
   end
 
@@ -58,10 +58,31 @@ class UsersController < ApplicationController
     @interpreters =
     if params[:search]
       #searchされた場合は、原文+.where('name LIKE ?', "%#{params[:search]}%")を実行
-      User.where(sort: 2).page(params[:page]).where('name LIKE ?', "%#{params[:search]}%").per(10)
+      User.where(sort: 2).page(params[:page]).where('name LIKE ?', "%#{params[:search]}%").per(12)
     else
       #searchされていない場合は、原文そのまま
-      User.where(sort: 2).page(params[:page]).per(10)
+      User.where(sort: 2).page(params[:page]).per(12)
+    end
+  end
+
+  def follow
+    user = User.find(params[:id])
+    @users =
+    if params[:search]
+      user.following.page(params[:page]).where('name LIKE ?', "%#{params[:search]}%").per(12)
+    else
+      user.following.page(params[:page]).per(12)
+    end
+
+  end
+
+  def follower
+    user = User.find(params[:id])
+    @users =
+    if params[:search]
+      user.followers.page(params[:page]).where('name LIKE ?', "%#{params[:search]}%").per(12)
+    else
+      user.followers.page(params[:page]).per(12)
     end
   end
 

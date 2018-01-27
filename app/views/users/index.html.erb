@@ -1,48 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-offset-1 col-sm-10" style="margin-bottom: 20px;">
-      <p class="switching-btn"><%= link_to "通訳者のみ表示", interpreter_path, class:"btn btn-info btn-md" %></p>
+      <p class="switching-btn"><%= link_to "通訳者のみ表示", interpreter_users_path, class:"btn btn-info btn-md" %></p>
       <%= form_tag(users_path, method: :get, style:"padding-bottom: 20px;") do %>
         <%= render 'search' %>
       <% end %>
       <%= page_entries_info @users %>
-      <div>
-        <% @users.order(name: :asc).each do |user| %>
-          <div class="user-area clearfix">
-            <div class="image-area">
-              <% if user.image.present? %>
-                <%= image_tag user.image_url, :size => '70x70' %>
-              <% else %>
-                <%= image_tag '/default.png', :size => '70x70' %>
-              <% end %>
-            </div>
-            <div class="users-user-index">
-              <p>
-                <%= link_to "ユーザー名: #{user.name}さん", user_path(user.id) %>
-                <% if user.sort == 2 %>
-                <span>
-                  　<%= image_tag '/mark_maru.png', :size => '40x40' %>
-                </span>
-                <% end %>
-              </p>
-              <p>性別:
-                <% if user.gender == 0 %>
-                  <%= "男性 "%>
-                  <% elsif user.gender == 1 %>
-                    <%= "女性" %>
-                  <% else %>
-                    <%= "その他" %>
-                  <% end %>
-                </p>
-                <% if user.sort == 2 %>
-                  <p>手話経験</p>
-                  <p><%= link_to "#{truncate(user.experience, length: 50)}", user_path(user.id) %></p>
-                <% end %>
-                <%= render 'follow_form', user: user %>
-              </div>
-            </div>
-          <% end %>
-      </div>
+      <%= render 'users' %>
       <%= paginate @users %>
     </div>
     <div class="row"></div>

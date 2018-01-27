@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  # before_action :current_user_check, only: [:create, :destroy]
+  before_action :current_user_check, only: [:create, :destroy]
   respond_to :js
 
   def create
