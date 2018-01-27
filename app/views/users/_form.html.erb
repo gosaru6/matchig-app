@@ -31,7 +31,10 @@
         <p><%= f.file_field :image, id: :user_image %></p>
         <p>◆ <%= f.label :通訳をご選択の方は簡単に経験をご記入下さい %></p>
         <p><%= f.text_area :experience, size: '60x2', class:"form-control" %></p>
-        <p><%= f.submit "登録" , class:"btn btn-primary"%></p>
+        <%= f.submit "登録" , class:"btn btn-primary"%>
+        <% if logged_in? %>
+          <%= link_to "退会", user_path, method: :delete, data: { confirm: '退会処理を行っていいですか?'}, class: 'btn btn-danger' %>
+        <% end %>
       <% end %>
     </div>
   <div>

@@ -2,11 +2,6 @@
   <div class="row">
     <h3>プロフィール</h3>
     <div class="user-self-area col-xs-5 col-sm-4">
-      <% if logged_in? && current_user.id != @user.id  %>
-        <h4 class="send_message" style="color: #F76B8A;">
-          <%= link_to "#{@user.name}さんへ", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, style:"color: #F76B8A;" %><br>メッセージを送る
-        </h4>
-      <% end %>
       <div class="user-box1 clearfix">
         <div class="image-area">
           <% if @user.image.present? %>
@@ -47,14 +42,11 @@
             </p>
           <% end %>
         </div>
-        <div class="btn-area">
-          <% if current_user.id == @user.id %>
-            <p>
-              <%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default' %>
-              <%= link_to "退会", user_path, method: :delete, data: { confirm: '退会処理を行っていいですか?'}, class: 'btn btn-danger' %>
-            </p>
-          <% end %>
-        </div>
+        <% if logged_in? && current_user.id != @user.id  %>
+          <%= link_to image_tag('/message.png'), conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, style:"color: #F76B8A;" %>
+        <% elsif current_user.id == @user.id %>
+          <%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default btn-sm' %>
+        <% end %>
       </div>
       <!-- ここまでプロフィールエリア -->
 

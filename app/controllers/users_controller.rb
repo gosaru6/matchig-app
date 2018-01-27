@@ -31,6 +31,8 @@ class UsersController < ApplicationController
   def show
     posted_index
     @user = User.find(params[:id])
+    @follow = @user.following.count
+    @follower = @user.followers.count
   end
 
   def edit
