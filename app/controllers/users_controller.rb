@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :forbid_login_user, {only: [:new, :create]}
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
-  before_action :current_user_check, {only: [:interpreter, :index]}
+  before_action :current_user_check, {only: [:interpreter, :index, :show]}
 
   def index
     @users =
