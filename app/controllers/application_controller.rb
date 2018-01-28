@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def posted_index
-    @user_posted = Post.where(user_id: params[:id]).page(params[:page]).per(5).includes(:user)
+    @user_posted = Post.where(user_id: params[:id]).page(params[:page]).per(5)
   end
 
   def post_search

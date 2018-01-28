@@ -19,9 +19,9 @@
             <p>
               <strong>名前：<%= @user.name %></strong>
             </p>
-            <p><%= link_to "プロフィール画面へ", user_path(@user.id) %></p>
+            <p><%= link_to "マイページ", user_path(@user.id) %></p>
               <% if current_user.id == @user.id %>
-                <span><%= link_to "メッセージ一覧へ", conversations_path %></span>
+                <span><%= link_to "メッセージ履歴", conversations_path %></span>
               <% end %>
           </div>
         </div>
@@ -102,14 +102,13 @@
             <p>投稿日:
               <%= simple_time post.created_at %>
             </p>
-            <% if post.user == current_user %>
-              <p>
-                <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
-                |
-                <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
-              </p>
-            <% end %>
           </div>
+          <% if post.user == current_user %>
+            <div class="edit-destroy-button">
+              <%= link_to image_tag('/edit.png'), edit_post_path(post.id) %>
+              <%= link_to image_tag('/trash.png'), post, method: :delete, data: { confirm: '削除していいですか?'} %>
+            </div>
+          <% end %>
         </div>
       <% end %>
       <%= paginate @posts %>

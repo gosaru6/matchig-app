@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h3>プロフィール</h3>
+    <h3>マイページ</h3>
     <div class="user-self-area col-xs-5 col-sm-4">
       <div class="user-box1 clearfix">
         <div class="image-area">
@@ -30,7 +30,7 @@
             <% end %>
           </p>
             <% if current_user.id == @user.id %>
-              <p><%= link_to "メッセージ一覧へ", conversations_path %></p>
+              <p><%= link_to "メッセージ一履歴", conversations_path %></p>
             <% end %>
           </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="clearfix">
           <div style="float: left;">
             <% if logged_in? && current_user.id != @user.id  %>
-              <%= link_to image_tag('/message.png'), conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, style:"color: #F76B8A;" %>
+              <%= link_to image_tag('/message.png'), conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
             <% elsif current_user.id == @user.id %>
               <%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-default btn-sm' %>
             <% end %>
@@ -65,17 +65,9 @@
         <p class="page-entries-info clearfix"><%= page_entries_info @user_posted %></p>
         <% @user_posted.each do |post| %>
           <div class="post-content">
-            <p>タイトル:<%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></p>
-            <p>内容:<%= post.content %></p>
-            <p>希望日:<%= simple_time post.requested_date %></p>
-            <p>投稿日:<%= simple_time post.created_at %></p>
-            <% if post.user == current_user %>
-              <p>
-                <%= link_to '編集', edit_post_path(post.id), class: 'btn btn-default' %>
-                |
-                <%= link_to '削除', post, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger' %>
-              </p>
-            <% end %>
+            <p>タイトル: <%= link_to cut_off("#{post.title}", 20), post_path(post.id) %></p>
+            <p>希望日: <%= simple_time post.requested_date %></p>
+            <p>投稿日: <%= simple_time post.created_at %></p>
           </div>
         <% end %>
         <%= paginate @user_posted %>

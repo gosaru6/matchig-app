@@ -29,16 +29,15 @@
       </div>
         <% if @post.user == current_user %>
           <div class="post_btn_area">
-            <p><%= link_to '編集', edit_post_path(@post.id), class: 'btn btn-default'  %>
-             | <%= link_to '削除', post_path, method: :delete, data: { confirm: '削除していいですか?'}, class: 'btn btn-danger'  %>
-           </p>
+            <%= link_to image_tag('/edit.png'), edit_post_path(@post.id), :size => "10x4" %>
+            <%= link_to image_tag('/trash.png'), post, method: :delete, data: { confirm: '削除していいですか?'} %>
           </div>
         <% end %>
-        <h4>
+        <h5>
           <% if current_user.id != @post.user_id %>
             <%= link_to "#{@post.user.name}さんへメッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @post.user_id), method: :post %>
           <% end %>
-        </h4>
+        </h5>
     </div>
   </div>
 </div>
