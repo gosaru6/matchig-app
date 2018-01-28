@@ -34,14 +34,6 @@
             <% end %>
           </div>
         </div>
-        <div class="experience-area">
-          <% if @user.experience.present? %>
-            <p style="font-size: 20px">手話経験</p>
-            <p style="word-break:break-all; word-wrap:break-word; display: inline-block; ">
-              <%= @user.experience %>
-            </p>
-          <% end %>
-        </div>
         <div class="clearfix">
           <div style="float: left;">
             <% if logged_in? && current_user.id != @user.id  %>
@@ -56,6 +48,14 @@
           <div class="follow-count">
             <%= link_to "フォロワー：#{@follower}人", follower_user_path(@user.id) %>
           </div>
+        </div>
+        <div class="experience-area">
+          <% if @user.experience.present? %>
+            <p style="font-size: 15px">手話経験</p>
+            <p style="word-break:break-all; word-wrap:break-word; display: inline-block; ">
+              <%= @user.experience %>
+            </p>
+          <% end %>
         </div>
       </div>
       <!-- ここまでプロフィールエリア -->
