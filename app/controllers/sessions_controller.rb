@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       current_user
       redirect_to posts_path(user.id)
     else
-      flash.now[:danger] = "メールアドレスかパスワードが間違っています。"
-      render 'new'
+      flash[:notice] = "メールアドレスかパスワードが間違っています。"
+      redirect_to new_session_path
     end
   end
 

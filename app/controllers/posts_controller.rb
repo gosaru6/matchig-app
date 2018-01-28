@@ -9,10 +9,10 @@ class PostsController < ApplicationController
   def index
     @posts =
     if params[:search]
-      Post.page(params[:page]).per(10).where( 'title LIKE ?', "%#{params[:search]}")
+      Post.page(params[:page]).per(10).where( 'title LIKE ?', "%#{params[:search]}").includes(:user)
     else
       #searchされていない場合は、原文そのまま
-      Post.page(params[:page]).per(10)
+      Post.page(params[:page]).per(10).includes(:user)
     end
 
     @post = Post.new
