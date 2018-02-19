@@ -9,7 +9,7 @@
               <%= image_tag conversation.target_user(current_user).image_url, :size => '70x70' %>
             <% else %>
               <%= image_tag '/initial.png', :size => '70x70' %>
-            <% end %>　　
+            <% end %>
             <span class="message-link">
               <%= link_to "#{conversation.target_user(current_user).name}さん", conversation_messages_path(conversation), style:"color: #364F6B;", method: :get %>
               <% if conversation.target_user(current_user).sort == 2 %>
