@@ -4,12 +4,12 @@ class PostsController < ApplicationController
 
   def index
     @posts =
-    if params[:search]
-      Post.page(params[:page]).per(10).where('title LIKE ?', "%#{params[:search]}").includes(:user)
-    else
-      #searchされていない場合は、原文そのまま
-      Post.page(params[:page]).per(10).includes(:user)
-    end
+      if params[:search]
+        Post.page(params[:page]).per(10).where('title LIKE ?', "%#{params[:search]}").includes(:user)
+      else
+        #searchされていない場合は、原文そのまま
+        Post.page(params[:page]).per(10).includes(:user)
+      end
 
     @post = Post.new
     user_find if current_user
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: "投稿しました"
     else
-      render 'new'
+      render new_post_path
     end
   end
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to posts_path, notice: "編集しました"
     else
-      render 'edit'
+      render edit_post_path
     end
   end
 
