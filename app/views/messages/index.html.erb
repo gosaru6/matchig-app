@@ -27,7 +27,7 @@
 
       <div class="message-create-area form-group">
         <%= form_with(model: @conversation, model: @message, url: conversation_messages_path, local: true) do |f| %>
-          <%= f.text_area :body, :size => "40x3", class:"form-control"%>
+          <%= f.text_area :body, size: "40x3", class: "form-control"%>
           <%= f.text_field :user_id, value: current_user.id, type: "hidden"%><br>
           <p><%= f.submit "メッセージを送る", class:"btn btn-primary" %></p>
         <% end %>
