@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path, notice: "投稿しました"
     else
-      render new_post_path
+      redirect_to posts_path, notice: "投稿できませんでした"
     end
   end
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to posts_path, notice: "編集しました"
     else
-      render edit_post_path
+      render :edit
     end
   end
 
