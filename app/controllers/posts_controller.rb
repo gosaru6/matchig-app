@@ -2,10 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :current_user_check, only: [:new, :edit, :show, :destroy]
 
-  def top
-
-  end
-
   def index
     @posts =
     if params[:search]
@@ -30,10 +26,6 @@ class PostsController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def show
-
   end
 
   def update
