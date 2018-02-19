@@ -1,7 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :current_user_check
 
-
   def index
     #全てのユーザーと会話一覧を取得
     @users = User.all
@@ -28,8 +27,7 @@ class ConversationsController < ApplicationController
   end
 
   private
-  def conversation_params
-    params.permit(:sender_id, :recipient_id)
-  end
-
+    def conversation_params
+      params.permit(:sender_id, :recipient_id)
+    end
 end

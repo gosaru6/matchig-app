@@ -73,7 +73,6 @@ class UsersController < ApplicationController
     else
       user.following.page(params[:page]).per(12)
     end
-
   end
 
   def follower
@@ -90,7 +89,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,:password_confirmaiton,
                                    :gender, :age, :image, :sort, :experience)
-
     end
-
 end

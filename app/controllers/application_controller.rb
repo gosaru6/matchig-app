@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def post_search
-    @search_post = Post.page(params[:page]).per(10).where( 'title LIKE ?', "%#{params[:search]}")
+    @search_post = Post.page(params[:page]).per(10).where('title LIKE ?', "%#{params[:search]}")
     @search_user = User.page(params[:page]).where('name LIKE ?', "%#{params[:search]}%")
   end
 
@@ -39,5 +39,4 @@ class ApplicationController < ActionController::Base
       redirect_to posts_path
     end
   end
-
 end

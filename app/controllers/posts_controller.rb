@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def index
     @posts =
     if params[:search]
-      Post.page(params[:page]).per(10).where( 'title LIKE ?', "%#{params[:search]}").includes(:user)
+      Post.page(params[:page]).per(10).where('title LIKE ?', "%#{params[:search]}").includes(:user)
     else
       #searchされていない場合は、原文そのまま
       Post.page(params[:page]).per(10).includes(:user)
@@ -50,13 +50,12 @@ class PostsController < ApplicationController
   end
 
   private
-  def post_params
-    params.require(:post).permit(:title, :content, :requested_date, :user_id)
-  end
+    def post_params
+      params.require(:post).permit(:title, :content, :requested_date, :user_id)
+    end
 
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
+    def set_post
+      @post = Post.find(params[:id])
+    end
 
 end
